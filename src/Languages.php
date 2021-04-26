@@ -5,8 +5,6 @@
  * @link https://github.com/itpanda-llc/yandex-translate-php-sdk
  */
 
-declare(strict_types=1);
-
 namespace Panda\Yandex\TranslateSdk;
 
 /**
@@ -19,7 +17,7 @@ class Languages extends Task
     /**
      * @return string URL-адрес
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return Url::LANGUAGES;
     }

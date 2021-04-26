@@ -5,8 +5,6 @@
  * @link https://github.com/itpanda-llc/yandex-translate-php-sdk
  */
 
-declare(strict_types=1);
-
 namespace Panda\Yandex\TranslateSdk;
 
 /**
@@ -20,19 +18,19 @@ class Detect extends Task
      * Наименования параметра "Текст, язык которого требуется определить"
      * @link https://cloud.yandex.ru/docs/translate/api-ref/Translation/detectLanguage
      */
-    private const TEXT = 'text';
+    const TEXT = 'text';
 
     /**
      * Наименование параметра "Список наиболее вероятных языков"
      * @link https://cloud.yandex.ru/docs/translate/api-ref/Translation/detectLanguage
      */
-    private const LANGUAGE_CODE_HINTS = 'languageCodeHints';
+    const LANGUAGE_CODE_HINTS = 'languageCodeHints';
 
     /**
      * Detect constructor.
      * @param string|null $text Текст, язык которого требуется определить
      */
-    public function __construct(string $text = null)
+    public function __construct($text = null)
     {
         if (!is_null($text)) $this->setText($text);
     }
@@ -40,7 +38,7 @@ class Detect extends Task
     /**
      * @return string URL-адрес
      */
-    public function getUrl(): string
+    public function getUrl()
     {
         return Url::DETECT;
     }
@@ -49,7 +47,7 @@ class Detect extends Task
      * @param string $text Текст, язык которого требуется определить
      * @return $this
      */
-    public function setText(string $text): self
+    public function setText($text)
     {
         if (mb_strlen($text) > Limit::DETECT_TEXT_LENGTH)
             throw new Exception\ClientException(Message::LENGTH_ERROR);
@@ -63,12 +61,12 @@ class Detect extends Task
      * @param string $codeHint Наиболее вероятный язык
      * @return $this
      */
-    public function addHint(string $codeHint): self
+    public function addHint($codeHint)
     {
         if (mb_strlen($codeHint) > Limit::LANGUAGE_CODE_LENGTH)
             throw new Exception\ClientException(Message::LENGTH_ERROR);
 
-        $codeHintCount = count($this->task[self::LANGUAGE_CODE_HINTS] ?? []);
+        $codeHintCount = count(isset($this->task[self::LANGUAGE_CODE_HINTS]) ? $this->task[self::LANGUAGE_CODE_HINTS] : []);
 
         if (++$codeHintCount > Limit::LANGUAGE_CODE_HINTS_COUNT)
             throw new Exception\ClientException(Message::COUNT_ERROR);

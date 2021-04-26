@@ -5,8 +5,6 @@
  * @link https://github.com/itpanda-llc/yandex-translate-php-sdk
  */
 
-declare(strict_types=1);
-
 namespace Panda\Yandex\TranslateSdk;
 
 /**
@@ -20,7 +18,7 @@ class Cloud extends Request
      * Наименование параметра "OAuth-токен"
      * @link https://cloud.yandex.ru/docs/iam/operations/iam-token/create
      */
-    private const YANDEX_PASSPORT_OAUTH_TOKEN = 'yandexPassportOauthToken';
+    const YANDEX_PASSPORT_OAUTH_TOKEN = 'yandexPassportOauthToken';
 
     /**
      * Наименование параметра "Идентификатор каталога"
@@ -28,19 +26,19 @@ class Cloud extends Request
      * @link https://cloud.yandex.ru/docs/translate/api-ref/Translation/listLanguages
      * @link https://cloud.yandex.ru/docs/translate/api-ref/Translation/translate
      */
-    private const FOLDER_ID = 'folderId';
+    const FOLDER_ID = 'folderId';
 
     /**
      * Наименование параметра "Bearer" в заголовке "Authorization"
      * @link https://cloud.yandex.ru/docs/iam/concepts/authorization/iam-token
      */
-    private const BEARER = 'Bearer';
+    const BEARER = 'Bearer';
 
     /**
      * Наименование параметра "Api-Key" в заголовке "Authorization"
      * @link https://cloud.yandex.ru/docs/iam/concepts/authorization/api-key
      */
-    private const API_KEY = 'Api-Key';
+    const API_KEY = 'Api-Key';
 
     /**
      * @var array Заголовки web-запроса
@@ -57,8 +55,7 @@ class Cloud extends Request
      * @param string|null $reason OAuth-токен / IAM-токен
      * @param string|null $folderId ID каталога
      */
-    public function __construct(string $reason = null,
-                                string $folderId = null)
+    public function __construct($reason = null, $folderId = null)
     {
         if (!is_null($reason))
             if (!is_null($folderId)) {
@@ -76,7 +73,7 @@ class Cloud extends Request
      * @param string $apiKey API-ключ
      * @return static
      */
-    public static function createApi(string $apiKey): self
+    public static function createApi($apiKey)
     {
         return (new self)->addAuthHeader(self::API_KEY, $apiKey);
     }
@@ -85,7 +82,7 @@ class Cloud extends Request
      * @param string $oAuthToken OAuth-токен
      * @return string IAM-токен
      */
-    private function getIamToken(string $oAuthToken): string
+    private function getIamToken($oAuthToken)
     {
         $response = $this->send(Url::TOKENS,
             json_encode([self::YANDEX_PASSPORT_OAUTH_TOKEN => $oAuthToken]),
@@ -99,8 +96,7 @@ class Cloud extends Request
      * @param string $reason IAM-токен / API-ключ
      * @return $this
      */
-    private function addAuthHeader(string $authType,
-                                   string $reason): self
+    private function addAuthHeader($authType, $reason)
     {
         $this->headers[] = sprintf("Authorization: %s %s",
             $authType,
@@ -113,7 +109,7 @@ class Cloud extends Request
      * @param Task $task Параметры задачи/запроса
      * @return string Результат web-запроса
      */
-    public function request(Task $task): string
+    public function request(Task $task)
     {
         $task->addParam($this->task);
 

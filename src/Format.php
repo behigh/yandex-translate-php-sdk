@@ -18,11 +18,11 @@ class Format
      * Текст без разметки (По умолчанию)
      * @link https://cloud.yandex.ru/docs/translate/api-ref/Translation/translate
      */
-    public const PLAIN_TEXT = 'PLAIN_TEXT';
+    const PLAIN_TEXT = 'PLAIN_TEXT';
 
     /**
      * Текст в формате HTML
      * @link https://cloud.yandex.ru/docs/translate/api-ref/Translation/translate
      */
-    public const HTML = 'HTML';
+    const HTML = 'HTML';
 }

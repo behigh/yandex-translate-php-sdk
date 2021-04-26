@@ -5,8 +5,6 @@
  * @link https://github.com/itpanda-llc/yandex-translate-php-sdk
  */
 
-declare(strict_types=1);
-
 namespace Panda\Yandex\TranslateSdk;
 
 /**
@@ -22,9 +20,7 @@ class Request
      * @param array $headers Заголовки
      * @return string Результат
      */
-    protected function send(string $url,
-                            ?string $data,
-                            array $headers): string
+    protected function send($url, $data, array $headers)
     {
         $ch = curl_init($url);
 

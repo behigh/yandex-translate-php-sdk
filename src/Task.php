@@ -5,8 +5,6 @@
  * @link https://github.com/itpanda-llc/yandex-translate-php-sdk
  */
 
-declare(strict_types=1);
-
 namespace Panda\Yandex\TranslateSdk;
 
 /**
@@ -29,7 +27,7 @@ abstract class Task
     /**
      * @param array $param Параметры задачи/запроса
      */
-    public function addParam(array $param): void
+    public function addParam(array $param)
     {
         $this->task += $param;
     }
@@ -37,12 +35,12 @@ abstract class Task
     /**
      * @return string URL-адрес
      */
-    abstract public function getUrl(): string;
+    abstract public function getUrl();
 
     /**
      * @return string|null Параметры задачи/запроса
      */
-    public function getParam(): ?string
+    public function getParam()
     {
         return ($this->task !== [])
             ? json_encode($this->task)
