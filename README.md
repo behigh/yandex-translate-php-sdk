@@ -33,7 +33,7 @@
 ## Установка
 
 ```shell script
-composer require itpanda-llc/yandex-translate-sdk
+composer require behigh/yandex-translate-sdk:dev-master
 ```
 
 ## Подключение
