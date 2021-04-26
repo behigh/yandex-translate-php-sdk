@@ -25,7 +25,7 @@
 
 ## Требования
 
-* PHP >= 7.2
+* PHP >= 5.6
 * cURL
 * JSON
 * mbstring
